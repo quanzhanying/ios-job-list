@@ -1,5 +1,5 @@
 class Job
-  attr_accessor :id, :title, :image_url, :price
+  attr_accessor :id, :title
 
   def initialize(data)
     @id = data['id']
@@ -7,7 +7,7 @@ class Job
   end
 
   def self.all(&callback)
-    ApiClient.client.get 'jobs.json' do |response|
+    ApiClient.client.get 'jobs' do |response|
       models = []
       models = response.object.map { |data| new(data) } if response.success?
       callback.call(response, models)

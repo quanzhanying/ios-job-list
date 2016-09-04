@@ -2,6 +2,7 @@ class ApiClient
   class << self
     def client
       @client ||= AFMotion::SessionClient.build('http://localhost:3000/') do
+        header 'Accept', 'application/json'
         response_serializer :json
       end
     end
