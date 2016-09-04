@@ -1,10 +1,26 @@
 class HomeScreen < PM::TableScreen
-  title '職缺一覽'
+  title "職缺一覽"
   stylesheet HomeScreenStylesheet
 
   def on_load
+    if Auth.signed_in?
+      set_nav_bar_button :right, title: "Logout", action: :sign_out_button
+    else
+      set_nav_bar_button :right, title: "Sign In", action: :sign_in_button
+    end
+
     @jobs = []
     load_jobs
+  end
+
+  def sign_out_button
+    Auth.sign_out do
+      open_tab_bar HomeScreen.new(nav_bar: true)
+    end
+  end
+
+  def sign_in_button
+    open SignInScreen.new(nav_bar: true)
   end
 
   def load_jobs
@@ -14,7 +30,7 @@ class HomeScreen < PM::TableScreen
         stop_refreshing
         update_table_data
       else
-        app.alert 'Sorry, there was an error fetching the jobs.'
+        app.alert "Sorry, there was an error fetching the jobs."
         mp response.error.localizedDescription
       end
     end
