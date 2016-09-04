@@ -1,9 +1,10 @@
 class Job
-  attr_accessor :id, :title
+  attr_accessor :id, :title, :content
 
   def initialize(data)
     @id = data['id']
     @title = data['title']
+    @content = data['content']
   end
 
   def self.all(&callback)

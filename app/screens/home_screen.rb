@@ -26,6 +26,7 @@ class HomeScreen < PM::TableScreen
         {
           height: 100,
           title: job.title,
+          subtitle: job.content,
           action: :view_job,
           arguments: { job: job }
         }
