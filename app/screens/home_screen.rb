@@ -1,9 +1,8 @@
-class HomeScreen < PM::Screen
+class HomeScreen < PM::TableScreen
   title '職缺一覽'
   stylesheet HomeScreenStylesheet
 
   def on_load
-    add_side_menu
     @jobs = []
     load_jobs
   end
@@ -19,6 +18,18 @@ class HomeScreen < PM::Screen
         mp response.error.localizedDescription
       end
     end
+  end
+
+  def table_data
+    [{
+      cells: @jobs.map do |_job|
+        {
+          height: 100,
+          action: :view_job,
+          arguments: { job: job }
+        }
+      end
+    }]
   end
 
   # You don't have to reapply styles to all UIViews, if you want to optimize, another way to do it
