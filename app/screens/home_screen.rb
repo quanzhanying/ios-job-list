@@ -34,6 +34,10 @@ class HomeScreen < PM::TableScreen
     }]
   end
 
+  def view_job
+    open JobScreen.new(args)
+  end
+
   def will_animate_rotate(_orientation, _duration)
     find.all.reapply_styles
   end
