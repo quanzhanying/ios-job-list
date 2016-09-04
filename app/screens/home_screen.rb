@@ -1,10 +1,10 @@
 class HomeScreen < PM::Screen
-  title "Your title here"
+  title '職缺一覽'
   stylesheet HomeScreenStylesheet
 
   def on_load
     set_nav_bar_button :left, system_item: :camera, action: :nav_left_button
-    set_nav_bar_button :right, title: "Right", action: :nav_right_button
+    set_nav_bar_button :right, title: 'Right', action: :nav_right_button
 
     @hello_world = append!(UILabel, :hello_world)
   end
@@ -30,7 +30,7 @@ class HomeScreen < PM::Screen
   #   find(:reapply_style).reapply_styles#
 
   # Remove the following if you're only using portrait
-  def will_animate_rotate(orientation, duration)
+  def will_animate_rotate(_orientation, _duration)
     find.all.reapply_styles
   end
 end
