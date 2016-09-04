@@ -22,9 +22,10 @@ class HomeScreen < PM::TableScreen
 
   def table_data
     [{
-      cells: @jobs.map do |_job|
+      cells: @jobs.map do |job|
         {
           height: 100,
+          title: job.title,
           action: :view_job,
           arguments: { job: job }
         }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-$:.unshift('/Library/RubyMotion/lib')
+$LOAD_PATH.unshift('/Library/RubyMotion/lib')
 require 'motion/project/template/ios'
 
 require 'bundler'
@@ -15,7 +15,7 @@ Motion::Project::App.setup do |app|
 
   app.short_version = '0.1.0'
   # Get version from git
-  #app.version = (`git rev-list HEAD --count`.strip.to_i).to_s
+  # app.version = (`git rev-list HEAD --count`.strip.to_i).to_s
   app.version = app.short_version
 
   # RubyMotion by default selects the latest SDK you have installed,
@@ -28,12 +28,14 @@ Motion::Project::App.setup do |app|
   # app.deployment_target = '7.1'
   # app.deployment_target = '8.0'
 
-  app.icons = Dir.glob("resources/icon*.png").map{|icon| icon.split("/").last}
+  app.icons = Dir.glob('resources/icon*.png').map { |icon| icon.split('/').last }
 
   app.device_family = [:iphone, :ipad]
   app.interface_orientations = [:portrait, :landscape_left, :landscape_right, :portrait_upside_down]
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
+
+  app.info_plist['NSAppTransportSecurity'] = { 'NSAllowsArbitraryLoads' => true } # allow any HTTP request
 
   # app.fonts = ['Oswald-Regular.ttf', 'FontAwesome.otf'] # These go in /resources
   # Or use all *.ttf fonts in the /resources/fonts directory:
@@ -45,25 +47,25 @@ Motion::Project::App.setup do |app|
 
   app.pods do
     pod 'SDWebImage'
-  #   pod 'JGProgressHUD'
-  #   pod 'SVProgressHUD'
-  #   pod "FontasticIcons"
+    #   pod 'JGProgressHUD'
+    #   pod 'SVProgressHUD'
+    #   pod "FontasticIcons"
   end
 
   app.development do
-    app.codesign_certificate = "iPhone Developer: YOURNAME"
-    app.provisioning_profile = "signing/ios-job-list.mobileprovision"
+    app.codesign_certificate = 'iPhone Developer: YOURNAME'
+    app.provisioning_profile = 'signing/ios-job-list.mobileprovision'
   end
 
   app.release do
     app.entitlements['get-task-allow'] = false
     app.codesign_certificate = 'iPhone Distribution: YOURNAME'
-    app.provisioning_profile = "signing/ios-job-list.mobileprovision"
+    app.provisioning_profile = 'signing/ios-job-list.mobileprovision'
     app.entitlements['beta-reports-active'] = true # For TestFlight
 
-    app.seed_id = "YOUR_SEED_ID"
+    app.seed_id = 'YOUR_SEED_ID'
     app.entitlements['application-identifier'] = app.seed_id + '.' + app.identifier
-    app.entitlements['keychain-access-groups'] = [ app.seed_id + '.' + app.identifier ]
+    app.entitlements['keychain-access-groups'] = [app.seed_id + '.' + app.identifier]
   end
 
   puts "Name: #{app.name}"
