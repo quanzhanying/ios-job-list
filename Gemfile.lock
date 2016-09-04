@@ -7,6 +7,9 @@ GEM
     ProMotion-XLForm (0.0.15)
       ProMotion (~> 2.0)
       motion-cocoapods (~> 1.4)
+    ProMotion-menu (1.1.0)
+      ProMotion (~> 2)
+      motion-cocoapods (~> 1)
     RedAlert (1.5)
       ruby_motion_query (>= 1.3.4)
     activesupport (4.2.7.1)
@@ -69,6 +72,8 @@ GEM
       motion-keychain
     motion-cocoapods (1.8.1)
       cocoapods (>= 1.0.0)
+    motion-fontawesome (0.0.1)
+      rake
     motion-keychain (0.0.1)
       motion-cocoapods (>= 1.4.1)
     motion-require (0.2.0)
@@ -106,10 +111,12 @@ PLATFORMS
 
 DEPENDENCIES
   ProMotion-XLForm
+  ProMotion-menu
   afmotion
   cdq
   motion-authentication
   motion-cocoapods
+  motion-fontawesome
   motion-yaml (= 1.4)
   newclear
   rake

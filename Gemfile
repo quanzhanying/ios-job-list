@@ -12,6 +12,9 @@ gem "newclear" # Completely wipe out the simulator and rebuild
 gem "motion-authentication"
 gem "ProMotion-XLForm"
 
+gem "ProMotion-menu"
+gem "motion-fontawesome"
+
 # Optional
 
 # gem "ProMotion-XLForm"

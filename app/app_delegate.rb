@@ -9,7 +9,11 @@ class AppDelegate < PM::Delegate
 
   def on_load(_app, _options)
     cdq.setup # Remove this if you aren't using CDQ
-    open HomeScreen.new(nav_bar: true)
+    open_authenticated_root
+  end
+
+  def show_menu
+    @menu.show :left
   end
 
   # Remove this if you are only supporting portrait
@@ -21,5 +25,6 @@ class AppDelegate < PM::Delegate
 
   def open_authenticated_root
     open_tab_bar HomeScreen.new(nav_bar: true)
+    @menu = open MenuDrawer
   end
 end

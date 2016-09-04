@@ -2,12 +2,10 @@ class HomeScreen < PM::TableScreen
   title "職缺一覽"
   stylesheet HomeScreenStylesheet
 
+  include NavigationHelper
+
   def on_load
-    if Auth.signed_in?
-      set_nav_bar_button :right, title: "Logout", action: :sign_out_button
-    else
-      set_nav_bar_button :right, title: "Sign In", action: :sign_in_button
-    end
+    add_side_menu
 
     @jobs = []
     load_jobs
@@ -15,7 +13,7 @@ class HomeScreen < PM::TableScreen
 
   def sign_out_button
     Auth.sign_out do
-      open_tab_bar HomeScreen.new(nav_bar: true)
+      app.delegate.open_authenticated_root
     end
   end
 
