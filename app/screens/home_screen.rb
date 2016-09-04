@@ -34,7 +34,7 @@ class HomeScreen < PM::TableScreen
     }]
   end
 
-  def view_job
+  def view_job(args)
     open JobScreen.new(args)
   end
 
